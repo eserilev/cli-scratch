@@ -2,16 +2,14 @@
 // use clap::builder::Styles;
 // use clap::{Parser, ValueEnum};
 use clap::Parser;
-use clap::{builder::ArgPredicate, command, Arg, ArgAction, Command};
-use clap::Subcommand;
 use serde::{Deserialize, Serialize};
 use std::fs;
 
 #[derive(Parser, Debug, Serialize, Deserialize)]
 pub struct TestCli {
     /// Some option that can be provided via CLI or TOML
-    #[clap(long)]
-    pub some_option: Option<String>,
+    #[clap(long, required_unless_present = "config_file", default_value="")]
+    pub some_option: String,
 
     /// Path to the TOML configuration file
     #[clap(long)]
