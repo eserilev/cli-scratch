@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize};
 use std::fs;
 
 #[derive(Parser, Debug, Serialize, Deserialize)]
-pub struct TestDerive {
+pub struct TestCli {
     /// Some option that can be provided via CLI or TOML
     #[clap(long)]
     pub some_option: Option<String>,
@@ -20,7 +20,7 @@ pub struct TestDerive {
 
 
 fn main() {
-    let cli = TestDerive::parse();
+    let cli = TestCli::parse();
     let cli = if let Some(config_file) = cli.config_file {
         let config_content = fs::read_to_string(&config_file).expect("Failed to read config file");
         toml::from_str(&config_content).expect("Failed to parse TOML")
