@@ -1,1 +1,2 @@
 some_option = "From TOML"
+conflicting_option = "Conflict"
